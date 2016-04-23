@@ -1,0 +1,19 @@
+<% {video_desc, row_class} = description(@video) %>
+<div class="row <%= row_class %>">
+  <span><p>Description: <%= video_desc %></p></span>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-4 col-sm-4">
+    <div class="row wankcount-row">
+      <div class="col-xs-8">
+        <span><p><strong>Wanks: <%= @video.wanks %></strong></p></span>
+      </div>
+      <div class="col-xs-4">
+        <button class="wankbutton btn btn-info pull-right" type="button">
+          <img src="images/wank.jpg"/>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

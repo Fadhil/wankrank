@@ -1,0 +1,24 @@
+<h2>Show video</h2>
+<div class="container video-container">
+  <ul>
+    <li>
+      <strong>Title:</strong>
+      <%= @video.title %>
+    </li>
+
+    <li>
+      <strong>Link:</strong>
+      <div class="video">
+        <%= raw @video.link %>
+      </div>
+    </li>
+
+    <li>
+      <strong>Description:</strong>
+      <%= @video.description %>
+    </li>
+  </ul>
+</div>
+
+<%= link "Edit", to: video_path(@conn, :edit, @video) %>
+<%= link "Back", to: video_path(@conn, :index) %>

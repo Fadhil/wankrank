@@ -1,0 +1,27 @@
+<h2>Listing videos</h2>
+<div class="col-md-10">
+  <div class="container-fluid video-container">
+    <ul>
+  <%= for video <- @videos do %>
+      <li class="video-details-container">
+        <span><%= video_thumbnail(video) %></span>
+        <div class="container">
+          <div class="row video-details">
+            <span><p><strong><%= title(video) %></strong></p></span>
+          </div>
+          <%= render "description.html", video: video %>
+        </div>
+
+        <!--\\
+        <span>
+          <%= link "Show", to: video_path(@conn, :show, video), class: "btn btn-default btn-xs" %>
+          <%= link "Edit", to: video_path(@conn, :edit, video), class: "btn btn-default btn-xs" %>
+          <%= link "Delete", to: video_path(@conn, :delete, video), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        </span>
+        -->
+      </li>
+  <% end %>
+    </ul>
+  </div>
+</div>
+<%= link "New video", to: video_path(@conn, :new) %>

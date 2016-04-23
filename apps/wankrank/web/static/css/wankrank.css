@@ -1,0 +1,97 @@
+body {
+  background-color: black;
+  color: gold;
+}
+
+h1 {
+  background-color: black;
+  color: gold !important;
+}
+p, input, h2, a{
+  font-family: 'Lato', sans-serif;
+}
+.link-text-input {
+  height: 80px;
+  font-size: 1.8em;
+}
+
+.rounded-input {
+  border-radius: 20px 20px 20px 20px;
+}
+
+.main-input-hero {
+  margin-top: 80px;
+}
+
+.fancy-text {
+  font-family: 'Oleo Script', cursive;
+}
+
+.no-padding {
+	padding: 0;
+}
+
+.video {
+  height: 120px;
+  width: 200px;
+}
+
+.video-container {
+/*  width: 450px; */
+}
+
+.video-container ul {
+    padding: 0; /* remove default padding and all margins! */
+    margin: 0;
+    list-style-type: none; /* remove the • */
+}
+.video-container ul li {
+    /* position: relative; */
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 250px;
+    height: 300px;
+    background-color: black;
+    float: left;
+}
+
+.video-details {
+  width: 250px;
+  height: 50px;
+  word-wrap: break-word;
+}
+
+.wankcount-row {
+  width: 260px;
+}
+
+.or-text {
+	vertical-align: middle;	
+	text-align: center;
+}
+
+.col-md-1 .or-text {
+	padding-top: 20px;	
+}
+
+.col-sm-12 .or-text {
+	padding: 0px;
+}
+
+h1 {
+ 
+  color: black;
+  
+}
+
+alert {
+  display: none;
+}
+
+.show-on-link {
+  display: none;
+}
+
+.wankbutton {
+  padding: 0;
+}
