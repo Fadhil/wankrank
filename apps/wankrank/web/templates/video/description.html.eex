@@ -9,7 +9,7 @@
         <span><p><strong>Wanks: <%= @video.wanks %></strong></p></span>
       </div>
       <div class="col-xs-4">
-        <button class="wankbutton btn btn-info pull-right" type="button">
+        <button class="wankbutton btn btn-info pull-right" data-video-id=<%= @video.id %> type="button">
           <img src="images/wank.jpg"/>
         </button>
       </div>

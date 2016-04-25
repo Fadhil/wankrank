@@ -19,3 +19,13 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+//
+
+require("web/static/js/wankrank")
+
+export var App = {
+  run: function(){
+  }
+}
+
+
