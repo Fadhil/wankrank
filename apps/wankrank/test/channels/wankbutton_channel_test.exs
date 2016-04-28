@@ -1,13 +1,13 @@
-defmodule Wankrank.RoomChannelTest do
+defmodule Wankrank.WankbuttonChannelTest do
   use Wankrank.ChannelCase
 
-  alias Wankrank.RoomChannel
+  alias Wankrank.WankbuttonChannel
   alias Wankrank.UserSocket
 
   setup do
     {:ok, _, socket} =
       socket("user_id", %{some: :assign})
-      |> subscribe_and_join(RoomChannel, "rooms:lobby")
+      |> subscribe_and_join(WankbuttonChannel, "rooms:lobby")
 
     {:ok, socket: socket}
   end

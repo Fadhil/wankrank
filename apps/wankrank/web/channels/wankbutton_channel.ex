@@ -1,7 +1,7 @@
-defmodule Wankrank.RoomChannel do
+defmodule Wankrank.WankbuttonChannel do
   use Wankrank.Web, :channel
 
-  def join("rooms:lobby", payload, socket) do
+  def join("wankbutton:lobby", payload, socket) do
     if authorized?(payload) do
       {:ok, socket}
     else
