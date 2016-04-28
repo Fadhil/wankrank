@@ -13,7 +13,7 @@ defmodule Wankrank.Video do
   end
 
   @required_fields ~w(link)
-  @optional_fields ~w(title description video_id)
+  @optional_fields ~w(title description video_id wanks source)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
