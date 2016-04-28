@@ -1,5 +1,7 @@
 defmodule Wankrank.WankbuttonChannel do
   use Wankrank.Web, :channel
+  alias Wankrank.Repo
+  alias Wankrank.Video
 
   def join("wankbutton:lobby", payload, socket) do
     if authorized?(payload) do
@@ -14,7 +16,17 @@ defmodule Wankrank.WankbuttonChannel do
   end
 
   def handle_in("increase_wankcount", %{"video_id" => video_id}, socket) do
-    broadcast! socket, "increase_wankcount", %{"video_id" => video_id}
+    video = Repo.get!(Video, video_id)
+    changeset = Video.changeset(video, %{wanks: video.wanks + 1})
+    case Repo.update(changeset) do
+      {:ok, video} ->
+        broadcast! socket,
+                   "increase_wankcount", %{
+                     "video_id" => video.id,
+                     "wank_count" => video.wanks
+                   }
+      {:error, changeset} -> ""
+    end
     {:noreply, socket}
   end
 

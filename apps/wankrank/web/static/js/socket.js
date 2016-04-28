@@ -63,11 +63,12 @@ wankbuttonChannel.join()
 import {Wankbutton} from "./wankbutton"
 // Wankbutton click handler
 $('.wankbutton').click(function(){
+  let wankcount= $('span [data-video-id='+ $(this).data('video-id') +']')
   wankbuttonChannel.push("increase_wankcount", {video_id: $(this).data('video-id')})
 })
 
 wankbuttonChannel.on("increase_wankcount", payload => {
-	Wankbutton.updateWank(payload.video_id)	
+	Wankbutton.updateWank(payload)	
 })
 
 export default socket
