@@ -2,7 +2,7 @@ defmodule Wankrank.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", Wankrank.RoomChannel
+  channel "rooms:*", Wankrank.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
