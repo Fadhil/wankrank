@@ -60,4 +60,14 @@ wankbuttonChannel.join()
   .receive("ok", resp => { console.log("Joined Successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
+import {Wankbutton} from "./wankbutton"
+// Wankbutton click handler
+$('.wankbutton').click(function(){
+  wankbuttonChannel.push("increase_wankcount", {video_id: $(this).data('video-id')})
+})
+
+wankbuttonChannel.on("increase_wankcount", payload => {
+	Wankbutton.updateWank(payload.video_id)	
+})
+
 export default socket

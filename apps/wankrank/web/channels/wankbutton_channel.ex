@@ -13,6 +13,11 @@ defmodule Wankrank.WankbuttonChannel do
     {:error, %{reason: "unauthorized"}}
   end
 
+  def handle_in("increase_wankcount", %{"video_id" => video_id}, socket) do
+    broadcast! socket, "increase_wankcount", %{"video_id" => video_id}
+    {:noreply, socket}
+  end
+
   # Channels can be used in a request/response fashion
   # by sending replies to requests from the client
   def handle_in("ping", payload, socket) do
