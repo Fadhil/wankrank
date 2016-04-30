@@ -1,5 +1,4 @@
 defmodule Wankrank.UserControllerTest do
-  require IEx
   use Wankrank.ConnCase
 
   alias Wankrank.User
