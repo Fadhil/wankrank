@@ -1,6 +1,5 @@
 defmodule Wankrank.VideoView do
   use Wankrank.Web, :view
-  require IEx
 
   def video_thumbnail %Wankrank.Video{link: link, video_id: nil} do
     link

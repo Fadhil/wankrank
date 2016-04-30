@@ -6,8 +6,24 @@ defmodule Wankrank.VideoControllerTest do
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
+    video = Repo.insert! %Video{}
     conn = get conn, video_path(conn, :index)
     assert html_response(conn, 200) =~ "Listing videos"
+  end
+
+  test "lists entries ordered by wanks" do
+    countlist = [4,5,12,2,3]
+    for count <- countlist do
+      changeset = Video.changeset(%Video{}, @valid_attrs)
+      changeset = change(changeset, %{wanks: count})
+      Repo.insert(changeset)
+    end
+    conn = get conn, video_path(conn, :index)
+    wanklist = Enum.map(conn.assigns.videos, fn %Video{wanks: wanks} ->
+      to_char_list wanks end
+    )
+    assert ['12', '5', '4', '3', '2'] = wanklist
+
   end
 
   test "renders form for new resources", %{conn: conn} do

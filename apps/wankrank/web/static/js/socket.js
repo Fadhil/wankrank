@@ -5,7 +5,8 @@
 // and connect at the socket path in "lib/my_app/endpoint.ex":
 import {Socket} from "phoenix"
 
-let socket = new Socket("/socket", {params: {token: window.userToken}})
+let socket = new Socket("/socket", {})
+// let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -54,9 +55,20 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
+let wankbuttonChannel = socket.channel("wankbutton:lobby", {})
+wankbuttonChannel.join()
+  .receive("ok", resp => { console.log("Joined Successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
+
+import {Wankbutton} from "./wankbutton"
+// Wankbutton click handler
+$('.wankbutton').click(function(){
+  let wankcount= $('span [data-video-id='+ $(this).data('video-id') +']')
+  wankbuttonChannel.push("increase_wankcount", {video_id: $(this).data('video-id')})
+})
+
+wankbuttonChannel.on("increase_wankcount", payload => {
+	Wankbutton.updateWank(payload)	
+})
 
 export default socket

@@ -1,13 +1,14 @@
 defmodule Wankrank.VideoController do
   use Wankrank.Web, :controller
   alias Wankrank.Video
-  require IEx
 
   plug :scrub_params, "video" when action in [:create, :update]
   plug :default_changeset, "video" when action in [:index, :new, :show]
 
   def index(conn, _params) do
-    videos = Repo.all(Video)
+    query = from v in Video,
+            order_by: [desc: v.wanks]
+    videos = Repo.all(query)
     render(conn, "index.html", videos: videos)
   end
 
