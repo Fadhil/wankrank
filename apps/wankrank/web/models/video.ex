@@ -1,6 +1,5 @@
 defmodule Wankrank.Video do
   use Wankrank.Web, :model
-  require IEx
 
   schema "videos" do
     field :title, :string
@@ -54,7 +53,6 @@ defmodule Wankrank.Video do
     case video_link do
       video_link when video_link in [" ", "", nil] -> video_changeset
       _ ->
-        IEx.pry
         %HTTPoison.Response{body: video_body} = HTTPoison.get!(video_link)
         [{"meta", [{"name", "title"}, {"content", title}], _}] = Floki.find(video_body, "meta[name=title]")
         change(video_changeset, title: title)
