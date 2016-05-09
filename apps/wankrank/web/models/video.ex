@@ -7,7 +7,7 @@ defmodule Wankrank.Video do
     field :description, :string
     field :video_id, :string
     field :source, :string
-    field :wanks, :integer
+    field :wanks, :integer, default: 0
     timestamps
   end
 
