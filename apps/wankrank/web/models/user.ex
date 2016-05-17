@@ -4,7 +4,6 @@ defmodule Wankrank.User do
   schema "users" do
     field :name, :string
     field :email, :string
-    field :anonymous_id, :string
     field :username, :string
     timestamps
   end
