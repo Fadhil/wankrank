@@ -3,7 +3,7 @@ defmodule Wankrank.UserTest do
 
   alias Wankrank.User
 
-  @valid_attrs %{email: "some content", name: "some content"}
+  @valid_attrs %{username: "SomeUserName"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

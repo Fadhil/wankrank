@@ -29,8 +29,13 @@ defmodule Wankrank.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Repo.get!(User, id)
-    render(conn, "show.html", user: user)
+    user = Repo.get(User, id)
+    case user do
+      nil ->
+        conn |> put_flash(:error, "Unable to process that request") |> redirect(to: "/") |> halt
+      user ->
+        render(conn, "show.html", user: user)
+    end
   end
 
   def edit(conn, %{"id" => id}) do

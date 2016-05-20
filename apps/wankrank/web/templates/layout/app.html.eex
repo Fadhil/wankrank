@@ -30,7 +30,7 @@
           <% end %>
         </div>
           <%=
-            unless @view_module==Wankrank.VideoView && @view_template=="new.html" do
+            if @view_module==Wankrank.VideoView && @view_template=="index.html" do
               render(
                 Wankrank.VideoView, "new_link_form.html", changeset: @changeset,
                 conn: @conn
