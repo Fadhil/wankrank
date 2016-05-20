@@ -8,7 +8,7 @@ use Mix.Config
 # with brunch.io to recompile .js and .css sources.
 config :wankrank, Wankrank.Endpoint,
   http: [port: {:system, "PORT"}],
-  debug_errors: true,
+  debug_errors: false,
   code_reloader: true,
   check_origin: false,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin"]]
@@ -40,3 +40,6 @@ config :wankrank, Wankrank.Repo,
   database: "wankrank_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :wankrank, :http_client, HTTPoison
+

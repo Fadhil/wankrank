@@ -17,3 +17,5 @@ config :wankrank, Wankrank.Repo,
   database: "wankrank_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :wankrank, :http_client, Wankrank.HTTPTestClient
