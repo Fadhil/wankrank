@@ -14,6 +14,8 @@ defmodule Wankrank.Video do
   @required_fields ~w(link)
   @optional_fields ~w(title description video_id wanks source)
 
+  @http_client Application.get_env(:wankrank, :http_client)
+
   @doc """
   Creates a changeset based on the `model` and `params`.
 
@@ -50,11 +52,13 @@ defmodule Wankrank.Video do
 
 
   def extract_details({video_changeset,[video_link: video_link]}) do
+    IEx.pry
     case video_link do
       video_link when video_link in [" ", "", nil] -> video_changeset
       _ ->
-        %HTTPoison.Response{body: video_body} = HTTPoison.get!(video_link)
+        %{body: video_body} = @http_client.get!(video_link)
         [{"meta", [{"name", "title"}, {"content", title}], _}] = Floki.find(video_body, "meta[name=title]")
+        IEx.pry
         change(video_changeset, title: title)
     end
   end
