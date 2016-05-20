@@ -43,7 +43,6 @@ defmodule Plug.Anonymous do
 
   import Plug.Conn
   import Ecto.Query, only: [from: 2]
-  require IEx
   require Logger
 
   @doc ~S"""

@@ -1,6 +1,7 @@
 defmodule Wankrank.Video do
   use Wankrank.Web, :model
 
+  require IEx
   schema "videos" do
     field :title, :string
     field :link, :string
@@ -52,13 +53,11 @@ defmodule Wankrank.Video do
 
 
   def extract_details({video_changeset,[video_link: video_link]}) do
-    IEx.pry
     case video_link do
       video_link when video_link in [" ", "", nil] -> video_changeset
       _ ->
         %{body: video_body} = @http_client.get!(video_link)
         [{"meta", [{"name", "title"}, {"content", title}], _}] = Floki.find(video_body, "meta[name=title]")
-        IEx.pry
         change(video_changeset, title: title)
     end
   end
