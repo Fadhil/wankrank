@@ -45,6 +45,7 @@ defmodule Plug.Anonymous do
   import Ecto.Query, only: [from: 2]
   require Logger
   alias Wankrank.NameGenerator
+  require IEx
 
   @doc ~S"""
   Initializes the Anonymous Plug
@@ -116,10 +117,12 @@ defmodule Plug.Anonymous do
     Logger.debug "User changeset: " <> inspect(user_changeset)
     case repo.insert(user_changeset) do
       {:ok, user} ->
-        conn = assign(conn, :current_user, user.id)
+        conn
+        |> assign(:current_user, user.id)
         |> put_session("username", user.username)
       {:error, changeset} ->
-        conn = assign(conn, :current_user, "anonymous")
+        conn
+        |> assign(:current_user, "anonymous")
         |> put_session("username", NameGenerator.generate_username)
     end
     conn
