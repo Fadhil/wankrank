@@ -1,5 +1,6 @@
 defmodule NameGeneratorTest do
   use ExUnit.Case, async: true
+  alias Wankrank.NameGenerator
 
   test "returns a random username made of three words and a number" do
     # Three words CamelCased
