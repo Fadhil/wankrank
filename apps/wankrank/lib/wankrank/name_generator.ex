@@ -11,7 +11,7 @@ defmodule Wankrank.NameGenerator do
     Lion Tiger Tapir Rabbit Goat Rooster Dragon Bull Dog Pig Rat Raccoon
     Alligator Crocodile Shark Whale Dolphin Eagle Condor Hawk Wolf Deer Hyena
   )
-  def generate do
+  def generate_username do
     # Seed :random so it's a bit more random than usual
     << a :: 32, b :: 32, c :: 32 >> = :crypto.rand_bytes(12)
     :random.seed(a, b, c)
