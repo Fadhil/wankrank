@@ -53,8 +53,13 @@ defmodule Plug.AnonymousTest do
     assert get_session(new_conn, "username") == "SomeRandomUserName"
   end
 
-  test "creates a new user when no session user_id exists" do
-    conn = default_conn
-    refute Map.has_key?(conn, :current_user)
+  test "creates a new user when no session username exists" do
+    assert Enum.count(Wankrank.Repo.all(SomeApp.User)) == 0
+    updated_conn = default_conn
+    |> Plug.Anonymous.call(%{user_model: SomeApp.User, repo: Wankrank.Repo})
+    assert user_id = updated_conn.assigns[:current_user]
+    regex = ~r([A-Z]\w*[A-Z]\w*[A-Z]\w*-\d{4})
+    assert get_session(updated_conn, "username") =~ regex
+    assert Enum.count(Wankrank.Repo.all(SomeApp.User)) == 1
   end
 end

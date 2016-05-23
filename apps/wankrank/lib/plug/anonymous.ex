@@ -125,6 +125,5 @@ defmodule Plug.Anonymous do
         |> assign(:current_user, "anonymous")
         |> put_session("username", NameGenerator.generate_username)
     end
-    conn
   end
 end
