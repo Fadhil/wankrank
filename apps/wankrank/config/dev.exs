@@ -35,8 +35,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :wankrank, Wankrank.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "hentamsajaLah",
+  username: System.get_env("WANKRANK_DEV_PG_USERNAME"),
+  password: System.get_env("WANKRANK_DEV_PG_PASSWORD"),
   database: "wankrank_dev",
   hostname: "localhost",
   pool_size: 10
