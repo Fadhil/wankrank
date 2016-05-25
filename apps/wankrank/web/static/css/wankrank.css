@@ -3,6 +3,10 @@ body {
   color: gold;
 }
 
+header {
+  background: black; 
+}
+
 h1 {
   background-color: black;
   color: gold !important;
@@ -36,9 +40,6 @@ p, input, h2, a{
   width: 200px;
 }
 
-.video-container {
-/*  width: 450px; */
-}
 
 .video-container ul {
     padding: 0; /* remove default padding and all margins! */
@@ -49,20 +50,29 @@ p, input, h2, a{
     /* position: relative; */
     padding-left: 10px;
     padding-right: 10px;
-    width: 250px;
-    height: 300px;
+    width: 180px;
+    height: 250px;
     background-color: black;
     float: left;
+    
+    /* margin-bottom: 30px; */
 }
 
 .video-details {
-  width: 250px;
-  height: 50px;
+  font-size: 0.9em;
+  color: gray;
+  width: 180px;
+  height: 60px;
   word-wrap: break-word;
 }
 
 .wankcount-row {
-  width: 260px;
+  font-size: 0.9em;
+  width: 180px;
+}
+
+.wankbutton {
+  padding: 0;
 }
 
 .or-text {
@@ -79,9 +89,9 @@ p, input, h2, a{
 }
 
 h1 {
- 
+
   color: black;
-  
+
 }
 
 alert {
@@ -92,6 +102,3 @@ alert {
   display: none;
 }
 
-.wankbutton {
-  padding: 0;
-}

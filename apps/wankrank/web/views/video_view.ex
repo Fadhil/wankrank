@@ -28,7 +28,7 @@ defmodule Wankrank.VideoView do
 
   def embed_link("youtube", video_id) do
     """
-    <iframe width="250" height="220" src="http://youtube.com/embed/#{video_id}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+    <iframe width="180" height="120" src="http://youtube.com/embed/#{video_id}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
     """
   end
 

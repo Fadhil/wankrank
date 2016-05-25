@@ -7,7 +7,7 @@ defmodule Wankrank.WankbuttonChannelTest do
   setup do
     {:ok, _, socket} =
       socket("user_id", %{some: :assign})
-      |> subscribe_and_join(WankbuttonChannel, "rooms:lobby")
+      |> subscribe_and_join(WankbuttonChannel, "wankbutton:lobby")
 
     {:ok, socket: socket}
   end
@@ -15,16 +15,16 @@ defmodule Wankrank.WankbuttonChannelTest do
   test "join rooms:lobby" do
     {:ok, socket} = connect(UserSocket, %{"some" => "params"})
     assert {:ok, _, newsocket} = subscribe_and_join(
-      socket, "rooms:lobby", %{}
+      socket, "wankbutton:lobby", %{}
     )
   end
 
-  test "join rooms:someprivateroom" do
-    {:ok, socket} = connect(UserSocket, %{})
-    assert {:error, _reason} = subscribe_and_join(
-      socket, "rooms:a_private_room", %{}
-    )
-  end
+  # test "join rooms:someprivateroom" do
+  #   {:ok, socket} = connect(UserSocket, %{})
+  #   assert {:error, _reason} = subscribe_and_join(
+  #     socket, "wankbutton:a_private_room", %{}
+  #   )
+  # end
 
   test "ping replies with status ok", %{socket: socket} do
     ref = push socket, "ping", %{"hello" => "there"}

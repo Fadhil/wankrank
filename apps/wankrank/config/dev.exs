@@ -8,7 +8,7 @@ use Mix.Config
 # with brunch.io to recompile .js and .css sources.
 config :wankrank, Wankrank.Endpoint,
   http: [port: {:system, "PORT"}],
-  debug_errors: true,
+  debug_errors: false,
   code_reloader: true,
   check_origin: false,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin"]]
@@ -35,8 +35,11 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :wankrank, Wankrank.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "hentamsajaLah",
+  username: System.get_env("WANKRANK_DEV_PG_USERNAME"),
+  password: System.get_env("WANKRANK_DEV_PG_PASSWORD"),
   database: "wankrank_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :wankrank, :http_client, HTTPoison
+
