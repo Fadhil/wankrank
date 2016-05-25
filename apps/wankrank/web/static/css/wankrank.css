@@ -3,6 +3,10 @@ body {
   color: gold;
 }
 
+header {
+  background: black; 
+}
+
 h1 {
   background-color: black;
   color: gold !important;
