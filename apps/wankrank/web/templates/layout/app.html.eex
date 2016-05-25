@@ -21,7 +21,7 @@
         <div class="col-md-2">
           <h1 class="logo">WankRank</h1>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
           <%= form_for @conn, video_path(@conn, :index),[as: :search], fn f -> %>
             <div class="form-group">
               <%= text_input f, :link, class: "form-control rounded-input", placeholder: "Search for a Wankable" %>
@@ -55,7 +55,6 @@
         <div class="col-md-11 col-md-offset-1">
           <%= render @view_module, @view_template, assigns %>
         </div>
-        <div class='col-md-1'></div>
       </main>
 
     </div> <!-- /container -->
