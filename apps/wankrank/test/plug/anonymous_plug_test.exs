@@ -54,6 +54,7 @@ defmodule Plug.AnonymousTest do
   end
 
   test "creates a new user when no session username exists" do
+    Wankrank.Repo.delete_all(SomeApp.User)
     assert Enum.count(Wankrank.Repo.all(SomeApp.User)) == 0
     updated_conn = default_conn
     |> Plug.Anonymous.call(%{user_model: SomeApp.User, repo: Wankrank.Repo})
