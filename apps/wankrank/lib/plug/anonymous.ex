@@ -80,7 +80,7 @@ defmodule Plug.Anonymous do
     case user do
       nil -> conn = create_anonymous_user(conn, user_model, username, repo)
       _   ->
-        conn = assign(conn, :current_user, user.id)
+        conn = assign(conn, :current_user, user)
         |> put_session("username", user.username)
 
       conn
@@ -118,7 +118,7 @@ defmodule Plug.Anonymous do
     case repo.insert(user_changeset) do
       {:ok, user} ->
         conn
-        |> assign(:current_user, user.id)
+        |> assign(:current_user, user)
         |> put_session("username", user.username)
       {:error, changeset} ->
         conn
