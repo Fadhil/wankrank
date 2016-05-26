@@ -14,7 +14,7 @@ defmodule Wankrank.Video do
   end
 
   @required_fields ~w(link)
-  @optional_fields ~w(title description video_id wanks source)
+  @optional_fields ~w(title description video_id wanks source category)
 
   @http_client Application.get_env(:wankrank, :http_client)
 
