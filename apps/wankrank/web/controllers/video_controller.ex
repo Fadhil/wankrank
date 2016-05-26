@@ -20,10 +20,10 @@ defmodule Wankrank.VideoController do
   def create(conn, %{"video" => video_params}) do
     changeset = Video.changeset(%Video{}, video_params)
     case Repo.insert(changeset) do
-      {:ok, _video} ->
+      {:ok, video} ->
         conn
         |> put_flash(:info, "Video created successfully.")
-        |> redirect(to: video_path(conn, :index))
+        |> redirect(to: video_path(conn, :edit, video.id))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
