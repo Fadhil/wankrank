@@ -10,10 +10,13 @@ defmodule Wankrank.VideoController do
   def index(conn, params) do
     query = from v in Video,
             order_by: [desc: v.wanks]
-    videos = Repo.all(query)
-    page = videos
+    page = query
     |> Wankrank.Repo.paginate(params)
-    render(conn, "index.html", videos: videos)
+    render(conn, "index.html", videos: page.entries,
+     page_number: page.page_number,
+     page_size: page.page_size,
+     total_pages: page.total_pages,
+     total_entries: page.total_entries)
 
   end
 
@@ -53,7 +56,7 @@ defmodule Wankrank.VideoController do
       {:ok, video} ->
         conn
         |> put_flash(:info, "Video updated successfully.")
-        |> redirect(to: video_path(conn, :show, video))
+        |> redirect(to: video_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", video: video, changeset: changeset)
     end
