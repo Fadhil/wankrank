@@ -1,7 +1,6 @@
 defmodule Wankrank.Video do
   use Wankrank.Web, :model
 
-  require IEx
   schema "videos" do
     field :title, :string
     field :link, :string
