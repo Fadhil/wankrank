@@ -7,11 +7,14 @@ defmodule Wankrank.VideoController do
   plug :scrub_params, "video" when action in [:create, :update]
   plug :default_changeset, "video" when action in [:index, :new, :show]
 
-  def index(conn, _params) do
+  def index(conn, params) do
     query = from v in Video,
             order_by: [desc: v.wanks]
     videos = Repo.all(query)
+    page = videos
+    |> Wankrank.Repo.paginate(params)
     render(conn, "index.html", videos: videos)
+
   end
 
   def new(conn, _params) do
