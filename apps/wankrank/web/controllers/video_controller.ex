@@ -1,7 +1,6 @@
 defmodule Wankrank.VideoController do
   use Wankrank.Web, :controller
   alias Wankrank.Video
-
   @categories Application.get_env(:wankrank, :categories)
 
   plug :scrub_params, "video" when action in [:create, :update]
@@ -46,6 +45,33 @@ defmodule Wankrank.VideoController do
     video = Repo.get!(Video, id)
     changeset = Video.changeset(video)
     render(conn, "edit.html", video: video, changeset: changeset, categories: @categories)
+  end
+
+  def categories(conn, params = %{"category" => category}) do
+    video_category = case category do
+      "music-videos" -> "Music Video"
+      "celebrities" -> "Celebrities"
+      "personalities" -> "Personalities"
+      _ -> :error
+    end
+    if :error == video_category do
+      conn
+      |> put_flash(:error, "Path Not Found")
+      |> redirect(to: video_path(conn, :index))
+
+    else
+      query = from v in Video,
+              where: v.category == ^video_category,
+              order_by: [desc: v.wanks]
+      page = query
+      |> Wankrank.Repo.paginate(params)
+      render(conn, "categories.html", videos: page.entries,
+       page_number: page.page_number,
+       page_size: page.page_size,
+       total_pages: page.total_pages,
+       total_entries: page.total_entries,
+       category: video_category)
+    end
   end
 
   def update(conn, %{"id" => id, "video" => video_params}) do
