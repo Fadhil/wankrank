@@ -2,6 +2,8 @@ defmodule Wankrank.VideoController do
   use Wankrank.Web, :controller
   alias Wankrank.Video
 
+  @categories Application.get_env(:wankrank, :categories)
+
   plug :scrub_params, "video" when action in [:create, :update]
   plug :default_changeset, "video" when action in [:index, :new, :show]
 
@@ -37,7 +39,7 @@ defmodule Wankrank.VideoController do
   def edit(conn, %{"id" => id}) do
     video = Repo.get!(Video, id)
     changeset = Video.changeset(video)
-    render(conn, "edit.html", video: video, changeset: changeset)
+    render(conn, "edit.html", video: video, changeset: changeset, categories: @categories)
   end
 
   def update(conn, %{"id" => id, "video" => video_params}) do
