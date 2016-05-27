@@ -8,7 +8,7 @@ defmodule Plug.Anonymous do
 
   With Anonymous, however, a user is automatically created for the current
   visitor to the site, so that he may use the site almost as if he were
-  full logged in (perhaps with certain restrictions on certain things,
+  fully logged in (perhaps with certain restrictions on certain things,
   probably to be implemented with some sort of authorization plug)
 
   So a first time visitor would get a user generated with a random username
@@ -24,7 +24,7 @@ defmodule Plug.Anonymous do
 
   He can also choose to ignore that, for the time being, and NOT have his
   Account/Profile associated with his email. So long as he doesn't clear
-  his browser, the he will have access to that account.
+  his browser, then he will have access to that account.
 
   If the cookies have been deleted, then a new anonymous user will be assigned.
   Supposing the user wanted to regain the account, he can go to sign in as
@@ -63,7 +63,7 @@ defmodule Plug.Anonymous do
         |> create_anonymous_user(user_model, nil, repo)
       _ ->
         conn
-        |> get_anonymous_user(user_model, repo, username )
+        |> get_anonymous_user(user_model, repo, username)
     end
   end
 
@@ -76,7 +76,7 @@ defmodule Plug.Anonymous do
   """
   def get_anonymous_user(conn, user_model, repo, username) do
     Logger.debug "username: " <> username
-    user = repo.one(from u in user_model, where: u.username== ^username)
+    user = repo.one(from u in user_model, where: u.username == ^username)
     case user do
       nil -> conn = create_anonymous_user(conn, user_model, username, repo)
       _   ->
