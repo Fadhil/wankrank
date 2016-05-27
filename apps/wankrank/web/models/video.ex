@@ -59,12 +59,24 @@ defmodule Wankrank.Video do
       _ ->
         %{body: video_body} = @http_client.get!(video_link)
         [{"meta", [{"name", "title"}, {"content", title}], _}] = Floki.find(video_body, "meta[name=title]")
-        change(video_changeset, title: title)
+        description = get_video_description(:youtube, video_body)
+        change(
+          video_changeset, title: title, description: description
+         )
     end
   end
 
   def extract_details(video_changeset) do
     video_changeset
+  end
+
+  def get_video_description(source_site, video_body) do
+    case source_site do
+      :youtube ->
+        Floki.find(video_body, "p[id=eow-description]")
+        |> Floki.raw_html
+      _ -> nil
+    end
   end
 
   def get_video_id(video_link) do

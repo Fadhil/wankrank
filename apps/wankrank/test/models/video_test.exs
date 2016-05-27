@@ -1,9 +1,9 @@
 defmodule Wankrank.VideoTest do
   use Wankrank.ModelCase
-
+  require IEx
   alias Wankrank.Video
 
-  @valid_attrs %{"description" => "some content", "link" => "http://www.youtube.com/watch?v=e_ykAPDN7Uk"}
+  @valid_attrs %{"link" => "http://www.youtube.com/watch?v=e_ykAPDN7Uk"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
@@ -24,5 +24,10 @@ defmodule Wankrank.VideoTest do
   test "gets source from video link" do
     youtube_link = "https://www.youtube.com/watch?v=videoID"
     assert "youtube" = Video.get_video_source(youtube_link)
+  end
+
+  test "gets description from video page" do
+    changeset = Video.changeset(%Video{}, @valid_attrs)
+    assert changeset.changes.description =~ "Dangerous Woman"
   end
 end
