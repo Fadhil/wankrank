@@ -1,34 +1,41 @@
 <h2>Listing videos</h2>
-<div class="col-md-10">
-  <div class="container-fluid video-container">
-    <ul>
-  <%= for video <- @videos do %>
-      <li class="video-details-container">
-        <span><%= video_thumbnail(video) %></span>
-        <div class="container">
-          <div class="row video-details">
-            <span><p><strong>
-              <%=
-                link title(video),
-                  to: video_path(@conn, :show, video)
-              %>
-              </strong></p></span>
+<div class="row">
+  <div class="col-md-10">
+    <div class="container-fluid video-container">
+      <ul>
+    <%= for video <- @videos do %>
+        <li class="video-details-container">
+          <span><%= video_thumbnail(video) %></span>
+          <div class="container">
+            <div class="row video-details">
+              <span><p><strong>
+                <%=
+                  link title(video),
+                    to: video_path(@conn, :show, video)
+                %>
+                </strong></p></span>
+            </div>
+           <%= render "description.html", video: video %>
           </div>
-         <%= render "description.html", video: video %>
-        </div>
 
-        <!--\\
-        <span>
-          <%= link "Show", to: video_path(@conn, :show, video), class: "btn btn-default btn-xs" %>
-          <%= link "Edit", to: video_path(@conn, :edit, video), class: "btn btn-default btn-xs" %>
-          <%= link "Delete", to: video_path(@conn, :delete, video), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-        </span>
-        -->
-      </li>
-  <% end %>
-    </ul>
+          <!--\\
+          <span>
+            <%= link "Show", to: video_path(@conn, :show, video), class: "btn btn-default btn-xs" %>
+            <%= link "Edit", to: video_path(@conn, :edit, video), class: "btn btn-default btn-xs" %>
+            <%= link "Delete", to: video_path(@conn, :delete, video), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+          </span>
+          -->
+        </li>
+    <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class=col-md-1>
+    <%= render "category_menu.html", conn: @conn, categories: @categories %>
   </div>
 </div>
-<div class=col-md-1>
-  <%= render "category_menu.html", conn: @conn, categories: @categories %>
+<div class="row">
+  <div class="col-md-10 text-center">
+    <%= pagination_links @conn, @page %>
+  </div>
 </div>
