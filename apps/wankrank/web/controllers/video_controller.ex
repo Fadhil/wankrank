@@ -12,10 +12,7 @@ defmodule Wankrank.VideoController do
     page = query
     |> Wankrank.Repo.paginate(params)
     render(conn, "index.html", videos: page.entries,
-     page_number: page.page_number,
-     page_size: page.page_size,
-     total_pages: page.total_pages,
-     total_entries: page.total_entries,
+     page: page,
      categories: @categories)
 
   end
@@ -68,10 +65,7 @@ defmodule Wankrank.VideoController do
       |> Wankrank.Repo.paginate(params)
       render(conn, "categories.html", videos: page.entries,
        categories: @categories,
-       page_number: page.page_number,
-       page_size: page.page_size,
-       total_pages: page.total_pages,
-       total_entries: page.total_entries,
+       page: page,
        category: video_category)
     end
   end
