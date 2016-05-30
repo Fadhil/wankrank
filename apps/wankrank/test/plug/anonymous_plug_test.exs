@@ -59,7 +59,7 @@ defmodule Plug.AnonymousTest do
     updated_conn = default_conn
     |> Plug.Anonymous.call(%{user_model: SomeApp.User, repo: Wankrank.Repo})
     assert user_id = updated_conn.assigns[:current_user]
-    regex = ~r([A-Z]\w*[A-Z]\w*[A-Z]\w*-\d{4})
+    regex = ~r/([A-Z]([a-z]|-)*){3}\z/
     assert get_session(updated_conn, "username") =~ regex
     assert Enum.count(Wankrank.Repo.all(SomeApp.User)) == 1
   end

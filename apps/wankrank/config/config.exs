@@ -27,3 +27,10 @@ import_config "#{Mix.env}.exs"
 config :phoenix, :generators,
   migration: true,
   binary_id: false
+
+  config :wankrank, :categories, [
+    "Music Videos", "Celebrities", "Personalities"
+  ]
+
+  config :scrivener_html,
+    routes_helper: Wankrank.Router.Helpers
