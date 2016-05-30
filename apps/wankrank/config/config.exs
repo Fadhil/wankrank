@@ -29,5 +29,5 @@ config :phoenix, :generators,
   binary_id: false
 
   config :wankrank, :categories, [
-    "Music Video", "Celebrities", "Personalities"
+    "Music Videos", "Celebrities", "Personalities"
   ]

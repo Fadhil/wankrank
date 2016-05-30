@@ -49,7 +49,7 @@ defmodule Wankrank.VideoController do
 
   def categories(conn, params = %{"category" => category}) do
     video_category = case category do
-      "music-videos" -> "Music Video"
+      "music-videos" -> "Music Videos"
       "celebrities" -> "Celebrities"
       "personalities" -> "Personalities"
       _ -> :error
