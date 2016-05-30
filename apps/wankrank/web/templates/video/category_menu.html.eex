@@ -1,5 +1,6 @@
-<ul>
+<ul class="list-unstyled">
   <%= for category <- @categories do %>
-    <li><%= link category, to: video_path(@conn, :categories, downcase_and_dash(category)) %></li>
+    <li white-space: no-wrap><%= link category, to: video_path(@conn, :categories,
+     downcase_and_dash(category)) %></li>
   <% end %>
 </ul>
