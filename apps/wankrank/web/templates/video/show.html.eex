@@ -1,24 +1,46 @@
 <h2>Show video</h2>
-<div class="container video-container">
+<div class="row">
+  <div class="col-md-4">
+    <%= video_show(@video) %>
+  </div>
+  <div class="col-md-8">
+    <ul>
+      <li>
+        <strong>Title:</strong>
+        <%= @video.title %>
+      </li>
+      <li>
+        <strong>Link:</strong>
+          <%= @video.link %>
+      </li>
+      <li>
+        <strong>Category:</strong>
+          <%= @video.category%>
+      </li>
+      <li>
+        <strong>Wanks:</strong>
+          <%= @video.wanks%>
+      </li>
+      <li class="btn-group">
+        <%=
+          link "Edit", to: video_path(@conn, :edit, @video),
+            class: "btn btn-warning"
+        %>
+        <%=
+          link "Back", to: video_path(@conn, :index),
+            class: "btn btn-primary"
+        %>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
   <ul>
-    <li>
-      <strong>Title:</strong>
-      <%= @video.title %>
-    </li>
-
-    <li>
-      <strong>Link:</strong>
-      <div class="video">
-        <%= raw @video.link %>
-      </div>
-    </li>
 
     <li>
       <strong>Description:</strong>
-      <%= @video.description %>
+      <%= raw @video.description %>
     </li>
   </ul>
 </div>
 
-<%= link "Edit", to: video_path(@conn, :edit, @video) %>
-<%= link "Back", to: video_path(@conn, :index) %>

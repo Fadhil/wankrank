@@ -23,9 +23,9 @@ defmodule Wankrank.Router do
 
     get "/", VideoController, :index
     post "/", VideoController, :index
-
     resources "/users", UserController
     resources "/videos", VideoController
+    get "/:category", VideoController, :categories
   end
 
   # Other scopes may use custom stacks.

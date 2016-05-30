@@ -5,7 +5,8 @@ defmodule Wankrank.VideoControllerTest do
   alias Wankrank.Repo
   @valid_attrs %{
     description: "some content",
-    link: "https://www.youtube.com/watch?v=-iIw8XZ92Wg"
+    link: "https://www.youtube.com/watch?v=-iIw8XZ92Wg",
+    category: "Music Video"
   }
   @invalid_attrs %{}
 
