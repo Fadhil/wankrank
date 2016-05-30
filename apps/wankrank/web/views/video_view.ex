@@ -44,4 +44,11 @@ defmodule Wankrank.VideoView do
     """
   end
 
+  def downcase_and_dash(category) do
+    category
+    |> String.downcase
+    |> String.split(" ")
+    |> Enum.join("-")
+  end
+
 end

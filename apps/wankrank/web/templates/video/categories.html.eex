@@ -29,4 +29,6 @@
     </ul>
   </div>
 </div>
-<%= link "New video", to: video_path(@conn, :new) %>
+<div class=col-md-1>
+  <%= render "category_menu.html", conn: @conn, categories: @categories %>
+</div>
