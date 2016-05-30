@@ -31,3 +31,6 @@ config :phoenix, :generators,
   config :wankrank, :categories, [
     "Music Videos", "Celebrities", "Personalities"
   ]
+
+  config :scrivener_html,
+    routes_helper: Wankrank.Router.Helpers
