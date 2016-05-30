@@ -1,5 +1,6 @@
 defmodule Wankrank.VideoView do
   use Wankrank.Web, :view
+  import Scrivener.HTML
 
   def video_thumbnail %Wankrank.Video{link: link, video_id: nil} do
     link
