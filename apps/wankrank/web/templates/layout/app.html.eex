@@ -20,7 +20,7 @@
       <div class="navbar">
         <div class="container-fluid">
           <div class="navbar-header">
-            <h1 class="logo">WankRank</h1>
+            <a href="/"><h1 class="logo">WankRank</h1><a/>
           </div>
           <div class="col-md-3">
             <%= form_for @conn, video_path(@conn, :index),[as: :search], fn f -> %>
