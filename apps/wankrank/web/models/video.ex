@@ -1,6 +1,5 @@
 defmodule Wankrank.Video do
   use Wankrank.Web, :model
-  require IEx
 
   schema "videos" do
     field :title, :string
@@ -37,21 +36,17 @@ defmodule Wankrank.Video do
         video_id = get_video_id(video_link)
         source = get_video_source(video_link)
         {change(video_changeset, video_id: video_id, source: source), video_link: video_link}
-      {:error, error_message} ->
-        add_error(video_changeset, :link, error_message)
+      {:error, _} ->
+        video_changeset
     end
   end
 
-  def get_video_link(params) do
+  defp get_video_link(params) do
     case params do
      :empty -> {:error, "No link"}
      %{"link" => video_link} when video_link in [" ", "", nil] ->
        {:error, "No link"}
-     %{"link" => video_link} ->
-       case get_video_source(video_link) do
-         "youtube" -> {:ok, video_link}
-         "unknown" -> {:error, "Video must be hosted on Youtube"}
-       end
+     %{"link" => video_link} -> {:ok, video_link}
      _ -> {:error, "Something went wrong"}
     end
   end
@@ -84,17 +79,16 @@ defmodule Wankrank.Video do
   end
 
   def get_video_id(video_link) do
-    regex_result = Regex.named_captures(~r/.*youtube.com\/watch\?v=(?<video_id>\w*)&?/, video_link)
-    case regex_result do
-      nil -> nil
-      %{"video_id" => video_id} -> video_id
-    end
+    %{"video_id" => video_id} = Regex.named_captures(~r/.*youtube.com\/watch\?v=(?<video_id>\w*)&?/, video_link)
+    video_id
   end
 
   def get_video_source(video_link) do
-    case Regex.match?(~r/youtube\.com/, video_link) do
-      true -> "youtube"
-      false -> "unknown"
+    cond do
+      true = Regex.match?(~r/youtube\.com/, video_link) ->
+        "youtube"
+      true ->
+        "unknown"
     end
   end
 end
