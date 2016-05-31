@@ -123,3 +123,7 @@ alert {
   color: #30606c;
   background-color: gold;
 }
+
+.menu-bar.active {
+  color: gold;
+}

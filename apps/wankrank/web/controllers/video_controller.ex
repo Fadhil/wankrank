@@ -13,7 +13,8 @@ defmodule Wankrank.VideoController do
     |> Wankrank.Repo.paginate(params)
     render(conn, "index.html", videos: page.entries,
      page: page,
-     categories: @categories)
+     categories: @categories,
+     category: "")
 
   end
 

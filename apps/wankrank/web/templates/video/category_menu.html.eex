@@ -1,6 +1,10 @@
 <ul class="list-unstyled">
   <%= for category <- @categories do %>
+    <% active = case category == @category do
+      false -> ""
+      true -> "active"
+      end %>
     <li white-space: no-wrap><%= link category, to: video_path(@conn, :categories,
-     downcase_and_dash(category)) %></li>
+     downcase_and_dash(category)), class: "menu-bar #{active}" %></li>
   <% end %>
 </ul>
