@@ -102,3 +102,24 @@ alert {
   display: none;
 }
 
+.pagination li a {
+  color: #337ab7;
+  background-color: black;
+  border-color: #30606c;
+}
+
+.pagination li a:hover {
+  color: gold;
+  background-color: black;
+  border-color: #30606c;
+}
+
+.pagination li.active a {
+  color: #30606c;
+  background-color: gold;
+}
+
+.pagination li.active a:hover {
+  color: #30606c;
+  background-color: gold;
+}
