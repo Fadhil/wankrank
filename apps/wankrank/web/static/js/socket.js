@@ -62,7 +62,7 @@ wankbuttonChannel.join()
 
 import {Wankbutton} from "./wankbutton"
 // Wankbutton click handler
-$('.wankbutton').click(function(){
+$('.wankbutton').one('click', function(){
   let wankcount= $('span [data-video-id='+ $(this).data('video-id') +']')
   wankbuttonChannel.push("increase_wankcount", {video_id: $(this).data('video-id')})
 })
