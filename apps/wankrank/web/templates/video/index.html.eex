@@ -4,7 +4,7 @@
     <div class="container-fluid video-container">
       <ul>
     <%= for video <- @videos do %>
-        <li class="video-details-container">
+      <li class="video-details-container" data-video-id=<%= video.id %>>
           <span><%= video_thumbnail(video) %></span>
           <div class="container">
             <div class="row video-details">
