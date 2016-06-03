@@ -29,8 +29,7 @@ defmodule Wankrank.Video do
   end
 
   def new_changeset(model, params \\ :empty) do
-    model
-    |> cast(params, @required_fields, @optional_fields)
+    changeset(model, params)
     |> embed_video(params)
     |> extract_details
   end
