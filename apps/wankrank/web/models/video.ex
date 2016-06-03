@@ -39,7 +39,7 @@ defmodule Wankrank.Video do
       {:ok, video_link} ->
         video_id = get_video_id(video_link)
         source = get_video_source(video_link)
-        {change(video_changeset, video_id: video_id, source: source), video_link: video_link}
+        {change(video_changeset, video_id: video_id, source: source), video_link: video_link, source: source}
       {:error, _} ->
         video_changeset
     end
@@ -56,16 +56,20 @@ defmodule Wankrank.Video do
   end
 
 
-  def extract_details({video_changeset,[video_link: video_link]}) do
-    case video_link do
-      video_link when video_link in [" ", "", nil] -> video_changeset
-      _ ->
-        %{body: video_body} = @http_client.get!(video_link)
-        [{"meta", [{"name", "title"}, {"content", title}], _}] = Floki.find(video_body, "meta[name=title]")
-        description = get_video_description(:youtube, video_body)
-        change(
-          video_changeset, title: title, description: description
-         )
+  def extract_details({video_changeset,[video_link: video_link, source: source]}) do
+    case source do
+      "youtube" ->
+        case video_link do
+          video_link when video_link in [" ", "", nil] -> video_changeset
+          _ ->
+            %{body: video_body} = @http_client.get!(video_link)
+            [{"meta", [{"name", "title"}, {"content", title}], _}] = Floki.find(video_body, "meta[name=title]")
+            description = get_video_description(:youtube, video_body)
+            change(
+              video_changeset, title: title, description: description
+             )
+        end
+      _ -> video_changeset
     end
   end
 
