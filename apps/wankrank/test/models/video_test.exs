@@ -27,7 +27,7 @@ defmodule Wankrank.VideoTest do
   end
 
   test "gets description from video page" do
-    changeset = Video.changeset(%Video{}, @valid_attrs)
+    changeset = Video.new_changeset(%Video{}, @valid_attrs)
     assert changeset.changes.description =~ "Dangerous Woman"
   end
 end
