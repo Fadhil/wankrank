@@ -30,6 +30,9 @@ defmodule Wankrank.Video do
 
   def new_changeset(model, params \\ :empty) do
     changeset(model, params)
+    |> validate_format(
+      :link,
+      ~r/.*youtube\.com.*/, message: "Video must be hosted on youtube.")
     |> embed_video(params)
     |> extract_details
   end
