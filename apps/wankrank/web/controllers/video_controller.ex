@@ -31,7 +31,7 @@ defmodule Wankrank.VideoController do
         |> put_flash(:info, "Video created successfully.")
         |> redirect(to: video_path(conn, :edit, video.id))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, categories: @categories)
     end
   end
 
