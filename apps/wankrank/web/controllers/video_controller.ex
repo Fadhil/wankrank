@@ -24,7 +24,7 @@ defmodule Wankrank.VideoController do
   end
 
   def create(conn, %{"video" => video_params}) do
-    changeset = Video.changeset(%Video{}, video_params)
+    changeset = Video.new_changeset(%Video{}, video_params)
     case Repo.insert(changeset) do
       {:ok, video} ->
         conn
