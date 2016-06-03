@@ -20,7 +20,7 @@ defmodule Wankrank.VideoController do
 
   def new(conn, _params) do
     changeset = Video.changeset(%Video{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, categories: @categories)
   end
 
   def create(conn, %{"video" => video_params}) do
