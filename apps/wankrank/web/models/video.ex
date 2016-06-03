@@ -83,16 +83,16 @@ defmodule Wankrank.Video do
   end
 
   def get_video_id(video_link) do
-    %{"video_id" => video_id} = Regex.named_captures(~r/.*youtube.com\/watch\?v=(?<video_id>\w*)&?/, video_link)
-    video_id
+    case Regex.named_captures(~r/.*youtube.com\/watch\?v=(?<video_id>\w*)&?/, video_link) do
+      %{"video_id" => video_id} -> video_id
+      _ -> nil
+    end
   end
 
   def get_video_source(video_link) do
-    cond do
-      true = Regex.match?(~r/youtube\.com/, video_link) ->
-        "youtube"
-      true ->
-        "unknown"
+      case Regex.match?(~r/youtube\.com/, video_link) do
+        true -> "youtube"
+        _ -> "unknown"
     end
   end
 end
