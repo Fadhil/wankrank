@@ -26,6 +26,13 @@ defmodule Wankrank.Video do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+  end
+
+  def new_changeset(model, params \\ :empty) do
+    changeset(model, params)
+    |> validate_format(
+      :link,
+      ~r/.*youtube\.com.*/, message: "Video must be hosted on youtube.")
     |> embed_video(params)
     |> extract_details
   end
@@ -35,7 +42,7 @@ defmodule Wankrank.Video do
       {:ok, video_link} ->
         video_id = get_video_id(video_link)
         source = get_video_source(video_link)
-        {change(video_changeset, video_id: video_id, source: source), video_link: video_link}
+        {change(video_changeset, video_id: video_id, source: source), video_link: video_link, source: source}
       {:error, _} ->
         video_changeset
     end
@@ -52,16 +59,20 @@ defmodule Wankrank.Video do
   end
 
 
-  def extract_details({video_changeset,[video_link: video_link]}) do
-    case video_link do
-      video_link when video_link in [" ", "", nil] -> video_changeset
-      _ ->
-        %{body: video_body} = @http_client.get!(video_link)
-        [{"meta", [{"name", "title"}, {"content", title}], _}] = Floki.find(video_body, "meta[name=title]")
-        description = get_video_description(:youtube, video_body)
-        change(
-          video_changeset, title: title, description: description
-         )
+  def extract_details({video_changeset,[video_link: video_link, source: source]}) do
+    case source do
+      "youtube" ->
+        case video_link do
+          video_link when video_link in [" ", "", nil] -> video_changeset
+          _ ->
+            %{body: video_body} = @http_client.get!(video_link)
+            [{"meta", [{"name", "title"}, {"content", title}], _}] = Floki.find(video_body, "meta[name=title]")
+            description = get_video_description(:youtube, video_body)
+            change(
+              video_changeset, title: title, description: description
+             )
+        end
+      _ -> video_changeset
     end
   end
 
@@ -79,16 +90,16 @@ defmodule Wankrank.Video do
   end
 
   def get_video_id(video_link) do
-    %{"video_id" => video_id} = Regex.named_captures(~r/.*youtube.com\/watch\?v=(?<video_id>\w*)&?/, video_link)
-    video_id
+    case Regex.named_captures(~r/.*youtube.com\/watch\?v=(?<video_id>\w*)&?/, video_link) do
+      %{"video_id" => video_id} -> video_id
+      _ -> nil
+    end
   end
 
   def get_video_source(video_link) do
-    cond do
-      true = Regex.match?(~r/youtube\.com/, video_link) ->
-        "youtube"
-      true ->
-        "unknown"
+      case Regex.match?(~r/youtube\.com/, video_link) do
+        true -> "youtube"
+        _ -> "unknown"
     end
   end
 end

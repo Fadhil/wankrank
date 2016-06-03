@@ -1,11 +1,13 @@
-<div class="jumbotron main-input-hero">
+<div class="col-md-10">
   <div class="row">
     <div class="text-center">
       <h1>New video</h1>
     </div>
   </div>
   <%= render "form.html", changeset: @changeset,
-                          action: video_path(@conn, :create) %>
+    action: video_path(@conn, :create),
+    categories: @categories
+  %>
 
   <%#= link "Back", to: video_path(@conn, :index) %>
 </div>
