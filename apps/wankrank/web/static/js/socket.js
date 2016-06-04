@@ -69,7 +69,7 @@ $('.wankbutton').one('click', function(){
 
 wankbuttonChannel.on("increase_wankcount", payload => {
 	Wankbutton.updateWank(payload)	
-  Wankbutton.updateVideoPosition(payload)
+  Wankbutton.updateVideoPosition(payload.video_id)
 })
 
 export default socket

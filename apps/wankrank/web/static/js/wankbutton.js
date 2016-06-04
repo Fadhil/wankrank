@@ -4,14 +4,14 @@ function updateWank(payload){
   wankcount.html(payload.wank_count).fadeIn()
 }
 
-function updateVideoPosition(payload){
-  let thisVideoLi = $('li[data-video-id='+ payload.video_id + ']')
+function updateVideoPosition(video_id){
+  let thisVideoLi = $('li[data-video-id='+ video_id + ']')
   let prevVideoLi = thisVideoLi.prev()
   // Get the previous Video's id from it's 'data-video-id' info
   let prevVideoId = prevVideoLi.data('video-id')
   
   // Let's compare each this video and the previous video's wankcount
-  let thisVideoWankCount = payload.wank_count // Use updated wankcount
+  let thisVideoWankCount = $('span[data-video-id=' + video_id + ']').text()
   let prevVideoWankCount = $('span[data-video-id=' + prevVideoId + ']').text()
   if(thisVideoWankCount > prevVideoWankCount){
     // First we hide both videos li's
@@ -25,6 +25,15 @@ function updateVideoPosition(payload){
     // Then fade in both videos
     thisVideoLi.fadeIn() 
     prevVideoLi.fadeIn()
+
+    // Now, thisVideo has moved to before prevVideo (although we used after, weird)
+    // So there should be a new prevVideo (the video *previous* to the first
+    // prevVideo), so we'll run updateVideoPosition again with thisVideo's id
+    // and if the new prevVideo is less than thisVideo's wankcount, it'll 
+    // switch places again. This technically should work for as many videos
+    // that have the same wankcount
+    updateVideoPosition(video_id) 
+   
   }
 
 }
