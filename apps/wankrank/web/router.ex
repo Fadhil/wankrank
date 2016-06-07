@@ -1,9 +1,14 @@
 defmodule Wankrank.Router do
   use Wankrank.Web, :router
+  alias Plug.Anonymous
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
+    plug Anonymous, %{
+      user_model: Wankrank.User,
+      repo: Wankrank.Repo
+    }
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
@@ -18,9 +23,9 @@ defmodule Wankrank.Router do
 
     get "/", VideoController, :index
     post "/", VideoController, :index
-
     resources "/users", UserController
     resources "/videos", VideoController
+    get "/:category", VideoController, :categories
   end
 
   # Other scopes may use custom stacks.

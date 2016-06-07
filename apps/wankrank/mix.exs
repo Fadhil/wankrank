@@ -42,7 +42,9 @@ defmodule Wankrank.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:httpoison, "~> 0.8.0"},
-     {:floki, "~> 0.8"}]
+     {:floki, "~> 0.8"},
+     {:scrivener, "~> 1.0"},
+     {:scrivener_html, "~> 1.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

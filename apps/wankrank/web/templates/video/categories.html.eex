@@ -1,10 +1,10 @@
-<h2><%= display_title(@conn) %></h2>
+<h2><%= @category%></h2>
 <div class="row">
   <div class="col-md-10">
     <div class="container-fluid video-container">
       <ul>
     <%= for video <- @videos do %>
-      <li class="video-details-container" data-video-id=<%= video.id %>>
+        <li class="video-details-container">
           <span><%= video_thumbnail(video) %></span>
           <div class="container">
             <div class="row video-details">

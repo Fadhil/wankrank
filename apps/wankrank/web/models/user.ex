@@ -4,12 +4,12 @@ defmodule Wankrank.User do
   schema "users" do
     field :name, :string
     field :email, :string
-
+    field :username, :string
     timestamps
   end
 
-  @required_fields ~w(email)
-  @optional_fields ~w(name)
+  @required_fields ~w(username)
+  @optional_fields ~w(name email)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

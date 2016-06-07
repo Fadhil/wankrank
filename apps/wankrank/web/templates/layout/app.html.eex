@@ -17,26 +17,41 @@
     <div class="container-fluid">
 
     <header>
-      <div class="row">
-        <div class="col-md-2">
-          <h1 class="logo">WankRank</h1>
-        </div>
-        <div class="col-md-5">
-          <%= form_for @conn, video_path(@conn, :index),[as: :search], fn f -> %>
-            <div class="form-group">
-              <%= text_input f, :link, class: "form-control rounded-input", placeholder: "Search for a Wankable" %>
-              <%= error_tag f, :link %>
-            </div>
-          <% end %>
-        </div>
+      <div class="navbar">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a href="/"><h1 class="logo">WankRank</h1><a/>
+          </div>
+          <div class="col-md-3">
+            <%= form_for @conn, video_path(@conn, :index),[as: :search], fn f -> %>
+              <div class="form-group">
+                <%= text_input f, :terms, class: "form-control rounded-input", placeholder: "Search for a Wankable" %>
+                <%= error_tag f, :terms%>
+              </div>
+            <% end %>
+          </div>
           <%=
-            unless @view_module==Wankrank.VideoView && @view_template=="new.html" do
+            if @view_module==Wankrank.VideoView && @view_template=="index.html" do
               render(
                 Wankrank.VideoView, "new_link_form.html", changeset: @changeset,
                 conn: @conn
               )
             end
            %>
+        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px; ">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                role="button" aria-haspopup="true" aria-expanded="false">
+                <%= @current_user.username %><span class="caret"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+        </div>
       </div>
       <!--//<nav role="navigation">
         <ul class="nav nav-pills pull-right">
@@ -52,7 +67,9 @@
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
       <main role="main">
-        <%= render @view_module, @view_template, assigns %>
+        <div class="col-md-11 col-md-offset-1">
+          <%= render @view_module, @view_template, assigns %>
+        </div>
       </main>
 
     </div> <!-- /container -->

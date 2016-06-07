@@ -1,31 +1,67 @@
 defmodule Wankrank.VideoController do
   use Wankrank.Web, :controller
   alias Wankrank.Video
+  @categories Application.get_env(:wankrank, :categories)
 
   plug :scrub_params, "video" when action in [:create, :update]
   plug :default_changeset, "video" when action in [:index, :new, :show]
 
-  def index(conn, _params) do
+	def index(conn, params = %{"search" => %{"terms" => search_terms}}) do
+		wildcard_search_terms = search_terms
+			|> String.split(" ")
+			|> Enum.filter(fn word -> String.length(word) > 2 end) # Only take words longer than 2 chars
+			|> Enum.join("%") # SQL queries use % for wildcard search
+
+		# Add % to beginning and end
+		wildcard_search_terms = "%" <> wildcard_search_terms <> "%"
+    query = from v in Video,
+						where: ilike(v.title, ^wildcard_search_terms), # ^ to refer to previously declared var
+            order_by: [desc: v.wanks],
+						limit: 1
+    page = query
+    |> Wankrank.Repo.paginate(params)
+
+		case page.total_entries do
+			0 ->
+        conn
+        |> put_flash(:error, "No videos matching your search terms.")
+        |> redirect(to: video_path(conn, :index))
+			_ ->
+				render(conn, "index.html", videos: page.entries,
+				 page: page,
+				 categories: @categories,
+				 category: "",
+				 search_terms: search_terms
+			 )
+		end
+	end
+
+  def index(conn, params) do
     query = from v in Video,
             order_by: [desc: v.wanks]
-    videos = Repo.all(query)
-    render(conn, "index.html", videos: videos)
+    page = query
+    |> Wankrank.Repo.paginate(params)
+    render(conn, "index.html", videos: page.entries,
+     page: page,
+     categories: @categories,
+     category: "")
+
   end
 
   def new(conn, _params) do
     changeset = Video.changeset(%Video{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, categories: @categories)
   end
 
   def create(conn, %{"video" => video_params}) do
-    changeset = Video.changeset(%Video{}, video_params)
+    changeset = Video.new_changeset(%Video{}, video_params)
     case Repo.insert(changeset) do
-      {:ok, _video} ->
+      {:ok, video} ->
         conn
         |> put_flash(:info, "Video created successfully.")
-        |> redirect(to: video_path(conn, :index))
+        |> redirect(to: video_path(conn, :edit, video.id))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, categories: @categories)
     end
   end
 
@@ -37,7 +73,32 @@ defmodule Wankrank.VideoController do
   def edit(conn, %{"id" => id}) do
     video = Repo.get!(Video, id)
     changeset = Video.changeset(video)
-    render(conn, "edit.html", video: video, changeset: changeset)
+    render(conn, "edit.html", video: video, changeset: changeset, categories: @categories)
+  end
+
+  def categories(conn, params = %{"category" => category}) do
+    video_category = case category do
+      "music-videos" -> "Music Videos"
+      "celebrities" -> "Celebrities"
+      "personalities" -> "Personalities"
+      _ -> :error
+    end
+    if :error == video_category do
+      conn
+      |> put_flash(:error, "Path Not Found")
+      |> redirect(to: video_path(conn, :index))
+
+    else
+      query = from v in Video,
+              where: v.category == ^video_category,
+              order_by: [desc: v.wanks]
+      page = query
+      |> Wankrank.Repo.paginate(params)
+      render(conn, "categories.html", videos: page.entries,
+       categories: @categories,
+       page: page,
+       category: video_category)
+    end
   end
 
   def update(conn, %{"id" => id, "video" => video_params}) do
@@ -48,7 +109,7 @@ defmodule Wankrank.VideoController do
       {:ok, video} ->
         conn
         |> put_flash(:info, "Video updated successfully.")
-        |> redirect(to: video_path(conn, :show, video))
+        |> redirect(to: video_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", video: video, changeset: changeset)
     end

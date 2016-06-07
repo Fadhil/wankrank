@@ -9,21 +9,21 @@
 
 
       <div class="form-group">
-        <%= text_input f, :link, class: "form-control rounded-input link-text-input", placeholder: "Enter a Video URL link or Embed code" %>
+        <%= text_input f, :link,
+          class: "form-control rounded-input link-text-input",
+          placeholder: "Enter a Video URL link or Embed code"
+        %>
         <%= error_tag f, :link %>
       </div>
-      <div class="show-on-link">
-        <div class="form-group">
-          <%= label f, :title, class: "control-label" %>
-          <%= text_input f, :title, class: "form-control" %>
-          <%= error_tag f, :title %>
-        </div>
-
-        <div class="form-group">
-          <%= label f, :description, class: "control-label" %>
-          <%= textarea f, :description, class: "form-control" %>
-          <%= error_tag f, :description %>
-        </div>
+      <div class="form-group">
+        <%= label f, :title, class: "control-label" %>
+        <%= text_input f, :title, class: "form-control" %>
+        <%= error_tag f, :title %>
+      </div>
+      <div class="form-group">
+        <%= label f, :category, class: "control-label" %>
+        <%= select f, :category, @categories, class: "form-control" %>
+        <%= error_tag f, :category %>
       </div>
       <div class="form-group">
         <%= submit "Submit", class: "btn btn-primary" %>

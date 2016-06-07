@@ -2,7 +2,7 @@ defmodule Wankrank.UserControllerTest do
   use Wankrank.ConnCase
 
   alias Wankrank.User
-  @valid_attrs %{email: "some content", name: "some content"}
+  @valid_attrs %{email: "some@email.com", username: "SomeRandomUsername"}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
@@ -33,10 +33,10 @@ defmodule Wankrank.UserControllerTest do
     assert conn.assigns.user == user
   end
 
-  test "renders page not found when id is nonexistent", %{conn: conn} do
-    assert_error_sent 404, fn ->
-      get conn, user_path(conn, :show, -1)
-    end
+  test "redirects to root page when id is nonexistent", %{conn: conn} do
+    conn = get conn, user_path(conn, :show, 0 )
+    assert redirected_to(conn) =~ "/"
+    assert get_flash(conn, :error) =~ "Unable to process that request"
   end
 
   test "renders form for editing chosen resource", %{conn: conn} do
