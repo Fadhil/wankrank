@@ -30,7 +30,9 @@ defmodule Wankrank.VideoController do
 				render(conn, "index.html", videos: page.entries,
 				 page: page,
 				 categories: @categories,
-				 category: "")
+				 category: "",
+				 search_terms: search_terms
+			 )
 		end
 	end
 

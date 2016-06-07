@@ -1,7 +1,6 @@
 defmodule Wankrank.VideoView do
   use Wankrank.Web, :view
   import Scrivener.HTML
-
   def video_thumbnail %Wankrank.Video{link: link, video_id: nil} do
     link
   end
@@ -21,6 +20,13 @@ defmodule Wankrank.VideoView do
 
   def title %Wankrank.Video{title: title} do
     title || "n/a"
+  end
+
+  def display_title(conn) do
+    case Map.has_key?(conn.assigns, :search_terms) do
+      true -> "Showing results for: '"<> conn.assigns.search_terms <> "'"
+      false -> "Listing Videos"
+    end
   end
 
 
