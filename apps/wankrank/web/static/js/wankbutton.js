@@ -13,7 +13,7 @@ function updateVideoPosition(video_id){
   // Let's compare each this video and the previous video's wankcount
   let thisVideoWankCount = $('span[data-video-id=' + video_id + ']').text()
   let prevVideoWankCount = $('span[data-video-id=' + prevVideoId + ']').text()
-  if(thisVideoWankCount > prevVideoWankCount){
+  if (parseInt(thisVideoWankCount) > parseInt(prevVideoWankCount)){
     // First we hide both videos li's
     thisVideoLi.hide()
     prevVideoLi.hide()
