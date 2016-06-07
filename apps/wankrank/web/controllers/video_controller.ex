@@ -7,15 +7,31 @@ defmodule Wankrank.VideoController do
   plug :default_changeset, "video" when action in [:index, :new, :show]
 
 	def index(conn, params = %{"search" => %{"terms" => search_terms}}) do
+		wildcard_search_terms = search_terms
+			|> String.split(" ")
+			|> Enum.filter(fn word -> String.length(word) > 2 end) # Only take words longer than 2 chars
+			|> Enum.join("%") # SQL queries use % for wildcard search
+
+		# Add % to beginning and end
+		wildcard_search_terms = "%" <> wildcard_search_terms <> "%"
     query = from v in Video,
+						where: ilike(v.title, ^wildcard_search_terms), # ^ to refer to previously declared var
             order_by: [desc: v.wanks],
 						limit: 1
     page = query
     |> Wankrank.Repo.paginate(params)
-    render(conn, "index.html", videos: page.entries,
-     page: page,
-     categories: @categories,
-     category: "")
+
+		case page.total_entries do
+			0 ->
+        conn
+        |> put_flash(:error, "No videos matching your search terms.")
+        |> redirect(to: video_path(conn, :index))
+			_ ->
+				render(conn, "index.html", videos: page.entries,
+				 page: page,
+				 categories: @categories,
+				 category: "")
+		end
 	end
 
   def index(conn, params) do
