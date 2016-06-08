@@ -77,10 +77,10 @@
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
 
     <div class="container-fluid">
-      <span class="col-md-10" style="color:#337ab7">WankRank &copy
+      <span class="col-md-10 footer">WankRank &copy
       <script type="text/javascript">document.write(new Date().getFullYear());
       </script></span>
-      <span class="col-md-2 text-right">Ariana v2.0
+      <span class="col-md-2 text-right footer">Ariana v2.0
         <p><span class="footer-release">Released 8 June 2016</span></p>
       </span>
     </div>

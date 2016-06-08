@@ -128,7 +128,10 @@ alert {
   color: gold;
 }
 
-.footer-release {
+.footer {
   color: #30606c;
+}
+
+.footer-release {
   font-size: 0.8em;
 }
