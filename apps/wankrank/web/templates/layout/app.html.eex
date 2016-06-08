@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link href='https://fonts.googleapis.com/css?family=Oleo+Script:400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat|Lato' rel='stylesheet' type='text/css'>
+    <link rel="icon"
+          type="image/ico"
+                href="/images/favicon-wibWRturqoise.ico" />
   </head>
 
   <body>
