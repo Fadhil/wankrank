@@ -62,8 +62,12 @@ p, input, h2, a{
   font-size: 0.9em;
   color: gray;
   width: 180px;
-  height: 60px;
+  padding-right: 5px;
+  height: 4.2em;
   word-wrap: break-word;
+  margin-bottom:7px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .wankcount-row {
