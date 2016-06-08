@@ -127,3 +127,8 @@ alert {
 .menu-bar.active {
   color: gold;
 }
+
+.footer-release {
+  color: #30606c;
+  font-size: 0.8em;
+}
