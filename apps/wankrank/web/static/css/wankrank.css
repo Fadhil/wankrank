@@ -14,6 +14,20 @@ h1 {
 p, input, h2, a{
   font-family: 'Lato', sans-serif;
 }
+
+#navbar ul.username-dropdown-menu {
+  margin-top: 24px;
+  list-style: none;
+}
+
+.wankrank-burger-menu {
+	background-color: white;
+
+}
+.wankrank-burger-menu	span {
+  background-color: black;
+}
+
 .link-text-input {
   height: 80px;
   font-size: 1.8em;
