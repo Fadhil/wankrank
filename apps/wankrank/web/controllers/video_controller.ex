@@ -29,7 +29,6 @@ defmodule Wankrank.VideoController do
 			_ ->
 				render(conn, "index.html", videos: page.entries,
 				 page: page,
-				 categories: @categories,
 				 category: "",
 				 search_terms: search_terms
 			 )
@@ -43,7 +42,6 @@ defmodule Wankrank.VideoController do
     |> Wankrank.Repo.paginate(params)
     render(conn, "index.html", videos: page.entries,
      page: page,
-     categories: @categories,
      category: "")
 
   end
@@ -67,7 +65,7 @@ defmodule Wankrank.VideoController do
 
   def show(conn, %{"id" => id}) do
     video = Repo.get!(Video, id)
-    render(conn, "show.html", video: video)
+    render(conn, "show.html", video: video, categories: @categories)
   end
 
   def edit(conn, %{"id" => id}) do

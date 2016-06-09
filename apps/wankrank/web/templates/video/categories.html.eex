@@ -30,9 +30,6 @@
       </ul>
     </div>
   </div>
-  <div class="col-md-2 text-right">
-    <%= render "category_menu.html", conn: @conn, categories: @categories, category: @category %>
-  </div>
 </div>
 <div class="row">
   <div class="col-md-10 text-center">

@@ -14,6 +14,20 @@ h1 {
 p, input, h2, a{
   font-family: 'Lato', sans-serif;
 }
+
+#navbar ul.username-dropdown-menu {
+  margin-top: 24px;
+  list-style: none;
+}
+
+.wankrank-burger-menu {
+	background-color: white;
+
+}
+.wankrank-burger-menu	span {
+  background-color: black;
+}
+
 .link-text-input {
   height: 80px;
   font-size: 1.8em;
@@ -62,8 +76,12 @@ p, input, h2, a{
   font-size: 0.9em;
   color: gray;
   width: 180px;
-  height: 60px;
+  padding-right: 5px;
+  height: 4.2em;
   word-wrap: break-word;
+  margin-bottom:7px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .wankcount-row {
@@ -126,4 +144,12 @@ alert {
 
 .menu-bar.active {
   color: gold;
+}
+
+.footer {
+  color: #30606c;
+}
+
+.footer-release {
+  font-size: 0.8em;
 }

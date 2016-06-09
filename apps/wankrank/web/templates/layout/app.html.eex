@@ -11,18 +11,43 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link href='https://fonts.googleapis.com/css?family=Oleo+Script:400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat|Lato' rel='stylesheet' type='text/css'>
+    <link rel="icon"
+          type="image/ico"
+                href="/images/WR-logo-ogb-v1.ico" />
   </head>
 
   <body>
     <div class="container-fluid">
 
     <header>
-      <div class="navbar">
+      <nav class="navbar">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a href="/"><h1 class="logo">WankRank</h1><a/>
+						<button type="button" class="wankrank-burger-menu navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+            <a class="navbar-brand" href="/"><h1 class="logo">WankRank</h1><a/>
           </div>
-          <div class="col-md-3">
+        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px; ">
+          <ul class="navbar-nav navbar-right username-dropdown-menu">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                role="button" aria-haspopup="true" aria-expanded="false">
+                <span><img src="/images/Facepalm-50-WRblue.png" alt="username-icon"></span>
+                <%= @current_user.username %><span class="caret"></span></a>
+              <!-- Adding a dropdown menu for li class="dropdown"-->
+              <ul class="dropdown-menu">
+								<%= render Wankrank.VideoView, "category_menu.html", conn: @conn %>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="row">
+          <div class="col-md-5">
             <%= form_for @conn, video_path(@conn, :index),[as: :search], fn f -> %>
               <div class="form-group">
                 <%= text_input f, :terms, class: "form-control rounded-input", placeholder: "Search for a Wankable" %>
@@ -30,26 +55,14 @@
               </div>
             <% end %>
           </div>
-          <%=
-            if @view_module==Wankrank.VideoView && @view_template=="index.html" do
-              render(
-                Wankrank.VideoView, "new_link_form.html", changeset: @changeset,
-                conn: @conn
-              )
-            end
-           %>
-        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px; ">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                role="button" aria-haspopup="true" aria-expanded="false">
-                <%= @current_user.username %><span class="caret"></span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
+					<%=
+						if @view_module==Wankrank.VideoView && @view_template=="index.html" do
+							render(
+								Wankrank.VideoView, "new_link_form.html", changeset: @changeset,
+								conn: @conn
+							)
+						end
+					 %>
         <div class="col-md-2">
         </div>
       </div>
@@ -74,5 +87,14 @@
 
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+
+    <div class="container-fluid">
+      <span class="col-md-10 footer">WankRank &copy
+      <script type="text/javascript">document.write(new Date().getFullYear());
+      </script></span>
+      <span class="col-md-2 text-right footer">Ariana v2.0
+        <p><span class="footer-release">Released 8 June 2016</span></p>
+      </span>
+    </div>
   </body>
 </html>
