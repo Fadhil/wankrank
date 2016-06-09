@@ -47,13 +47,41 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                 role="button" aria-haspopup="true" aria-expanded="false">
                 <span><img src="/images/Facepalm-50-WRblue.png" alt="username-icon"></span>
-                <%= @current_user.username %><span class="caret"></span>
-              </a>
+                <%= @current_user.username %><span class="caret"></span></a>
+              <!-- Adding a dropdown menu for li class="dropdown"-->
+              <ul class="dropdown-menu">
+                <li><a href="#">Music Videos</a></li>
+                <li><a href="#">Celebrities</a></li>
+                <li><a href="#">Personalities</a></li>
+              </ul>
             </li>
           </ul>
         </div>
       </div>
       <div class="row">
+        <!-- Testing navbar function here -->
+        <nav class="navbar navbar-right">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span><img src="/images/Facepalm-50-WRblue.png" alt="username-icon"></span>
+                <%= @current_user.username %>
+              <span class="caret"></span>
+            </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+          </div>
+        </nav>
+        <!-- http://getbootstrap.com/components/#navbar -->
+        <!-- Test successful only after loading jquery and bootstrap from src (before </body>) -->
+        <!-- End of Testing -->
+        <!-- To be Removed -->
+
         <div class="col-md-2">
         </div>
       </div>
