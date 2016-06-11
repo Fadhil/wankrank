@@ -40,7 +40,7 @@
                 <span><img src="/images/Facepalm-50-WRblue.png" alt="username-icon"></span>
                 <%= @current_user.username %><span class="caret"></span></a>
               <!-- Adding a dropdown menu for li class="dropdown"-->
-              <ul class="navbar-dropdown dropdown-menu" aria-expanded="false":>
+              <ul class="navbar-dropdown dropdown-menu" aria-expanded="false" aria-labelledby="dropdown-toggle">
 								<%= render Wankrank.VideoView, "category_menu.html", conn: @conn %>
               </ul>
             </li>
