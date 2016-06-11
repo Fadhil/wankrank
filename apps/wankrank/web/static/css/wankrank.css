@@ -130,6 +130,21 @@ span.caret {
   box-shadow: none;
   transform: translateY(1px);
   background-color: black;
+  /* Only for Chrome, Safari and Opera */
+  -webkit-animation-name: wank;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function; ease-out;
+  -webkit-animation-delay: 1s;
+  -webkit-animation-iteration-count: 3;
+  -webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes wank {
+  0% {left:0px; top:0px;}
+  25% {left:0px; top:2px;}
+  50% {left:0px; top:-1px;}
+  75% {left:1px; top:2px;}
+  100% {left:-1px; top:-3px;}
 }
 
 .wankbutton img:hover {
