@@ -148,6 +148,26 @@ alert {
 
 .footer {
   color: #30606c;
+  display: block;
+  text-align: center;
+  padding: 5px 0px;
+  word-wrap: normal;
+}
+
+@media only screen and (min-width: 700px) {
+  .footer-left {
+    text-align: left;
+    display: inline-block;
+    padding-top: 20px;
+  }
+  .footer-logo {
+    display: inline-block;
+  }
+  .footer-right {
+    text-align: right;
+    display: inline-block;
+    padding-top: 8px;
+  }
 }
 
 .footer-release {
