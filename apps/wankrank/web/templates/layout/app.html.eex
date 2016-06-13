@@ -94,9 +94,18 @@
         WankRank &copy
       <script type="text/javascript">document.write(new Date().getFullYear());
         </script></span>
-      <span class="col-md-2 footer footer-logo">
-        <img src="/images/WR-logo-ota-v1.png" alt="WR-logo-ota-v1.png" />
+      <span class="col-md-2 footer footer-logo" id="footer-WR">
+        <a href="#top" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+          <img src="/images/WR-logo-ota-v1.png" alt="WR-logo-ota-v1.png" /></a>
         </span>
+        <!-- Add animation to footer-logo -->
+        <script>
+        // Detect when page is at bottom then make logo fade out and fade back in
+          $(window).scroll(function(){
+            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+              $("#footer-WR").fadeOut("slow").fadeIn("slow");}
+            })
+        </script>
       <span class="col-md-5 footer footer-right">
         Ariana v2.0
         <p><span class="footer-release">
