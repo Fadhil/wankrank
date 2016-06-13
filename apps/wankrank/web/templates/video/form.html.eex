@@ -22,7 +22,7 @@
       </div>
       <div class="form-group">
         <%= label f, :category, class: "control-label" %>
-        <%= select f, :category, @categories, class: "form-control" %>
+        <%= select f, :category, @categories, class: "form-control", prompt: "Choose a Category" %>
         <%= error_tag f, :category %>
       </div>
       <div class="form-group">
