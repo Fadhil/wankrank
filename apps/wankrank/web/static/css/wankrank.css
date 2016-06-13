@@ -126,10 +126,27 @@ span.caret {
   box-shadow: 1px 2px #123f36;
 }
 
-.wankbutton img:active {
+.wankbutton:focus img {
   box-shadow: none;
   transform: translateY(1px);
   background-color: black;
+  /* Only for Chrome, Safari and Opera */
+  -webkit-animation-name: wank;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function; ease-out;
+  -webkit-animation-delay: 0s;
+  -webkit-animation-iteration-count: 4;
+  -webkit-animation-direction: normal;
+}
+
+@-webkit-keyframes wank {
+  0% {left:0px; top:0px;}
+  20% {left:0px; top:2px;}
+  30% {left:0px; top:-1px;}
+  50% {left:-0.5px; top:2px;}
+  60% {left:0.5px; top:-3px;}
+  80% {left:0px; top:2px;}
+  100% {left:0px; top:-2px;}
 }
 
 .wankbutton img:hover {
