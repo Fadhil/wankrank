@@ -15,13 +15,43 @@ p, input, h2, a{
   font-family: 'Lato', sans-serif;
 }
 
-#navbar ul.username-dropdown-menu {
-  margin-top: 24px;
+.dropdown-menu li a {
+  color: #337ab7;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #30606c;
+}
+
+.dropdown-menu li a:active {
+  color: gold;
+}
+
+.dropdown-menu {
+  position: relative;
+  top: auto;
+  left: auto;
+  right:auto;
+  float: none;
+}
+
+li.dropdown.open #dropdown-toggle {
+  color: gold;
+  text-decoration: none;
+}
+
+span.caret {
+  color: #337ab7;
+}
+
+.username-dropdown-menu {
+  margin-top: 35px;
   list-style: none;
 }
 
 .wankrank-burger-menu {
 	background-color: white;
+  margin-top: 35px;
 
 }
 .wankrank-burger-menu	span {
@@ -91,6 +121,20 @@ p, input, h2, a{
 
 .wankbutton {
   padding: 0;
+  background-color: black;
+  cursor: pointer;
+  box-shadow: 1px 2px #123f36;
+}
+
+.wankbutton img:active {
+  box-shadow: none;
+  transform: translateY(1px);
+  background-color: black;
+}
+
+.wankbutton img:hover {
+  position: relative;
+  top: 1px;
 }
 
 .or-text {
