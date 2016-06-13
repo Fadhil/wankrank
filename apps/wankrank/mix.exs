@@ -3,7 +3,7 @@ defmodule Wankrank.Mixfile do
 
   def project do
     [app: :wankrank,
-     version: "0.1.0",
+     version: "0.3.1",
      elixir: "~> 1.2",
      build_path: "../../_build",
      config_path: "../../config/config.exs",
@@ -23,7 +23,8 @@ defmodule Wankrank.Mixfile do
   def application do
     [mod: {Wankrank, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :httpoison]]
+                    :phoenix_ecto, :postgrex, :httpoison, :floki, :scrivener,
+                    :scrivener_html]]
   end
 
   # Specifies which paths to compile per environment.
@@ -36,6 +37,7 @@ defmodule Wankrank.Mixfile do
   defp deps do
     [{:phoenix, "~> 1.1.4"},
      {:postgrex, ">= 0.0.0"},
+     {:mariaex, "~> 0.6.1"},
      {:phoenix_ecto, "~> 2.0"},
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
@@ -44,7 +46,8 @@ defmodule Wankrank.Mixfile do
      {:httpoison, "~> 0.8.0"},
      {:floki, "~> 0.8"},
      {:scrivener, "~> 1.0"},
-     {:scrivener_html, "~> 1.0"}]
+     {:scrivener_html, "~> 1.0"},
+     {:exrm, "~> 1.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
