@@ -1,5 +1,5 @@
 <div class="col-md-1 fancy-text"><h4 class="or-text">OR</h4></div>
-<div class="col-md-3">
+<div class="col-md-5">
   <%= form_for @changeset, video_path(@conn, :create), fn f -> %>
     <div class="form-group">
       <%= text_input f, :link, class: "form-control rounded-input", placeholder: "Enter a Video URL link or Embed code" %>

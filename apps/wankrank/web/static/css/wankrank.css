@@ -14,6 +14,55 @@ h1 {
 p, input, h2, a{
   font-family: 'Lato', sans-serif;
 }
+
+.dropdown-menu li a {
+  color: #337ab7;
+  padding-bottom: 5px;
+  padding-left: 25px;
+  padding-right: 15px;
+  padding-top: 5px;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #30606c;
+}
+
+.dropdown-menu li a:active {
+  color: gold;
+}
+
+.dropdown-menu {
+  background: black;
+  position: relative;
+  top: auto;
+  left: auto;
+  right:auto;
+  float: none;
+}
+
+li.dropdown.open #dropdown-toggle {
+  color: gold;
+  text-decoration: none;
+}
+
+span.caret {
+  color: #337ab7;
+}
+
+.username-dropdown-menu {
+  margin-top: 35px;
+  list-style: none;
+}
+
+.wankrank-burger-menu {
+	background-color: white;
+  margin-top: 35px;
+
+}
+.wankrank-burger-menu	span {
+  background-color: black;
+}
+
 .link-text-input {
   height: 80px;
   font-size: 1.8em;
@@ -62,8 +111,12 @@ p, input, h2, a{
   font-size: 0.9em;
   color: gray;
   width: 180px;
-  height: 60px;
+  padding-right: 5px;
+  height: 4.2em;
   word-wrap: break-word;
+  margin-bottom:7px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .wankcount-row {
@@ -73,6 +126,37 @@ p, input, h2, a{
 
 .wankbutton {
   padding: 0;
+  background-color: black;
+  cursor: pointer;
+  box-shadow: 1px 2px #123f36;
+}
+
+.wankbutton:focus img {
+  box-shadow: none;
+  transform: translateY(1px);
+  background-color: black;
+  /* Only for Chrome, Safari and Opera */
+  -webkit-animation-name: wank;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function; ease-out;
+  -webkit-animation-delay: 0s;
+  -webkit-animation-iteration-count: 4;
+  -webkit-animation-direction: normal;
+}
+
+@-webkit-keyframes wank {
+  0% {left:0px; top:0px;}
+  20% {left:0px; top:2px;}
+  30% {left:0px; top:-1px;}
+  50% {left:-0.5px; top:2px;}
+  60% {left:0.5px; top:-3px;}
+  80% {left:0px; top:2px;}
+  100% {left:0px; top:-2px;}
+}
+
+.wankbutton img:hover {
+  position: relative;
+  top: 1px;
 }
 
 .or-text {
@@ -126,4 +210,32 @@ alert {
 
 .menu-bar.active {
   color: gold;
+}
+
+.footer {
+  color: #30606c;
+  display: block;
+  text-align: center;
+  padding: 5px 0px;
+  word-wrap: normal;
+}
+
+@media only screen and (min-width: 700px) {
+  .footer-left {
+    text-align: left;
+    display: inline-block;
+    padding-top: 20px;
+  }
+  .footer-logo {
+    display: inline-block;
+  }
+  .footer-right {
+    text-align: right;
+    display: inline-block;
+    padding-top: 8px;
+  }
+}
+
+.footer-release {
+  font-size: 0.8em;
 }
