@@ -63,5 +63,12 @@ config :logger, level: :info
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 import_config "prod.secret.exs"
+config :wankrank, Wankrank.Repo,
+  adapter: Ecto.Adapters.MySQL,
+  username: System.get_env("WANKRANK_DEV_PG_USERNAME"),
+  password: System.get_env("WANKRANK_DEV_PG_PASSWORD"),
+  database: "wankrank",
+  hostname: "localhost",
+  pool_size: 10
 
 config :wankrank, :http_client, HTTPoison
