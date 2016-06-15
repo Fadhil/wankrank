@@ -13,8 +13,9 @@ use Mix.Config
 # which you typically run after static files are built.
 config :wankrank, Wankrank.Endpoint,
   http: [port: {:system, "WANKRANK_PORT"}],
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/manifest.json"
+  url: [host: {:system, "WANKRANK_HOST"}, port: {:system, "WANKRANK_PORT"}],
+  cache_static_manifest: "priv/static/manifest.json",
+  server: true
 
 # Do not print debug messages in production
 config :logger, level: :info
