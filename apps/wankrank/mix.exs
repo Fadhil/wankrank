@@ -24,7 +24,7 @@ defmodule Wankrank.Mixfile do
     [mod: {Wankrank, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex, :httpoison, :floki, :scrivener,
-                    :scrivener_html]]
+                    :scrivener_html, :mariaex, :conform]]
   end
 
   # Specifies which paths to compile per environment.
