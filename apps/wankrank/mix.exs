@@ -47,7 +47,8 @@ defmodule Wankrank.Mixfile do
      {:floki, "~> 0.8"},
      {:scrivener, "~> 1.0"},
      {:scrivener_html, "~> 1.0"},
-     {:exrm, "~> 1.0"}]
+     {:exrm, "~> 1.0"},
+     {:conform, "~> 2.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
