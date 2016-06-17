@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :wankrank, Wankrank.Endpoint,
   http: [port: {:system, "WANKRANK_PORT"}],
-  url: [host: {:system, "WANKRANK_HOST"}, port: {:system, "WANKRANK_PORT"}],
+  url: [host: {:system, "WANKRANK_HOST"}],
   cache_static_manifest: "priv/static/manifest.json",
   server: true
 
