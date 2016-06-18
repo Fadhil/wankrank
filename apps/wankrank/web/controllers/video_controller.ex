@@ -15,7 +15,7 @@ defmodule Wankrank.VideoController do
 		# Add % to beginning and end
 		wildcard_search_terms = "%" <> wildcard_search_terms <> "%"
     query = from v in Video,
-						where: ilike(v.title, ^wildcard_search_terms), # ^ to refer to previously declared var
+						where: like(v.title, ^wildcard_search_terms), # ^ to refer to previously declared var
             order_by: [desc: v.wanks],
 						limit: 1
     page = query
