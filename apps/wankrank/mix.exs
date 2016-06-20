@@ -3,7 +3,7 @@ defmodule Wankrank.Mixfile do
 
   def project do
     [app: :wankrank,
-     version: "0.4.6",
+     version: "0.5.0",
      elixir: "~> 1.2",
      build_path: "../../_build",
      config_path: "../../config/config.exs",

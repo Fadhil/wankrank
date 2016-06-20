@@ -59,7 +59,15 @@ defmodule Wankrank.VideoController do
         |> put_flash(:info, "Video created successfully.")
         |> redirect(to: video_path(conn, :edit, video.id))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset, categories: @categories)
+				case changeset.errors do
+					[video_id: "has already been taken"] ->
+						video = Repo.get_by(Video, video_id: changeset.changes.video_id)
+						conn
+						|> put_flash(:info, "Video already exists")
+						|> redirect(to: video_path(conn, :show, video.id ))
+					_ ->
+						render(conn, "new.html", changeset: changeset, categories: @categories)
+				end
     end
   end
 
