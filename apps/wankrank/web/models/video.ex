@@ -33,6 +33,7 @@ defmodule Wankrank.Video do
     |> validate_format(
       :link,
       ~r/.*youtube\.com.*/, message: "Video must be hosted on youtube.")
+    |> unique_constraint(:video_id)
     |> embed_video(params)
     |> extract_details
   end
