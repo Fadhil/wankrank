@@ -12,8 +12,8 @@ defmodule Wankrank.Video do
     timestamps
   end
 
-  @required_fields ~w(link)
-  @optional_fields ~w(title description video_id wanks source category)
+  @required_fields ~w(link category)
+  @optional_fields ~w(title description video_id wanks source)
 
   @http_client Application.get_env(:wankrank, :http_client)
 
