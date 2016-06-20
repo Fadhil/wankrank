@@ -59,7 +59,7 @@ defmodule Wankrank.VideoController do
       {:ok, video} ->
         conn
         |> put_flash(:info, "Video created successfully.")
-        |> redirect(to: video_path(conn, :edit, video.id))
+        |> redirect(to: video_path(conn, :index))
       {:error, changeset} ->
 				case changeset.errors do
 					[video_id: "has already been taken"] ->
