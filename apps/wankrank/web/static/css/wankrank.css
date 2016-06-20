@@ -95,16 +95,16 @@ span.caret {
     margin: 0;
     list-style-type: none; /* remove the • */
 }
+
 .video-container ul li {
     /* position: relative; */
     padding-left: 10px;
     padding-right: 10px;
     width: 180px;
-    height: 250px;
+    height: 120px;
     background-color: black;
     float: left;
-    
-    /* margin-bottom: 30px; */
+    margin-bottom: 130px;
 }
 
 .video-details {
@@ -122,6 +122,57 @@ span.caret {
 .wankcount-row {
   font-size: 0.9em;
   width: 180px;
+}
+
+@media only screen and (max-width: 700px){
+  .video-container ul li {
+      /* position: relative; */
+      width: 315px;
+      height: 210px;
+      margin-bottom: 130px;
+  }
+  .video-details {
+    width: 315px;
+    padding-right: 20px;
+  }
+  .wankcount-row {
+    width: 315px;
+    padding-right: 5px;
+  }
+}
+
+@media only screen and (max-width: 400px){
+  .video-container ul li {
+      /* position: relative; */
+      width: 270px;
+      height: 180px;
+      margin-bottom: 130px;
+  }
+  .video-details {
+    width: 270px;
+    padding-right: 20px;
+  }
+  .wankcount-row {
+    width: 270px;
+    padding-right: 5px;
+  }
+}
+
+@media only screen and (max-width: 350px){
+  .video-container ul li {
+      /* position: relative; */
+      width: 225px;
+      height: 150px;
+      margin-bottom: 110px;
+  }
+  .video-details {
+    width: 225px;
+    padding-right: 20px;
+  }
+  .wankcount-row {
+    width: 225px;
+    padding-right: 5px;
+  }
 }
 
 .wankbutton {
