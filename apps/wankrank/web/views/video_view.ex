@@ -44,7 +44,7 @@ defmodule Wankrank.VideoView do
         %{width: 360, height: 240}
       :large ->
         %{width: 640, height: 480}
-      _ -> %{width: 180, height: 120}
+      _ -> %{width: "100%", height: "100%"}
     end
     """
     <iframe width="#{dimensions.width}" height="#{dimensions.height}" src="http://youtube.com/embed/#{video_id}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
