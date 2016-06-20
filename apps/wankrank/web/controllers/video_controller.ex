@@ -2,6 +2,7 @@ defmodule Wankrank.VideoController do
   use Wankrank.Web, :controller
   alias Wankrank.Video
   @categories Application.get_env(:wankrank, :categories)
+	@admin_password System.get_env("WANKRANK_ADMIN_PASSWORD")
 
   plug :scrub_params, "video" when action in [:create, :update]
   plug :default_changeset, "video" when action in [:index, :new, :show]
@@ -51,7 +52,8 @@ defmodule Wankrank.VideoController do
     render(conn, "new.html", changeset: changeset, categories: @categories)
   end
 
-  def create(conn, %{"video" => video_params}) do
+  def create(conn, %{"video" => video_params,
+		"admin" => %{"password" => @admin_password }}) do
     changeset = Video.new_changeset(%Video{}, video_params)
     case Repo.insert(changeset) do
       {:ok, video} ->
@@ -70,6 +72,14 @@ defmodule Wankrank.VideoController do
 				end
     end
   end
+
+  def create(conn, %{"video" => video_params}) do
+		changeset = Video.new_changeset(%Video{}, video_params)
+		conn
+		|> put_flash(:info, "You need a password to upload videos. Please contact the admins at wankrank@yahoo.com to get your password.")
+		|> render("new.html", changeset: changeset, categories: @categories)
+  end
+
 
   def show(conn, %{"id" => id}) do
     video = Repo.get!(Video, id)
@@ -107,7 +117,9 @@ defmodule Wankrank.VideoController do
     end
   end
 
-  def update(conn, %{"id" => id, "video" => video_params}) do
+  def update(conn, %{"id" => id, "video" => video_params,
+		"admin" => %{"password" => @admin_password}}) do
+
     video = Repo.get!(Video, id)
     changeset = Video.changeset(video, video_params)
 
@@ -117,8 +129,16 @@ defmodule Wankrank.VideoController do
         |> put_flash(:info, "Video updated successfully.")
         |> redirect(to: video_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "edit.html", video: video, changeset: changeset)
+        render(conn, "edit.html", video: video, changeset: changeset, categories: @categories)
     end
+  end
+
+  def update(conn, %{"id" => id, "video" => video_params}) do
+			video = Repo.get!(Video, id)
+			changeset = Video.changeset(video, video_params)
+			conn
+			|> put_flash(:info, "You need a password to update videos. Please contact the admins at wankrank@yahoo.com to get your password.")
+      |>  render("edit.html", video: video, changeset: changeset, categories: @categories)
   end
 
   def delete(conn, %{"id" => id}) do
