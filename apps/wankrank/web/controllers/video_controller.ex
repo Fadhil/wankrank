@@ -2,7 +2,7 @@ defmodule Wankrank.VideoController do
   use Wankrank.Web, :controller
   alias Wankrank.Video
   @categories Application.get_env(:wankrank, :categories)
-	@admin_password System.get_env("WANKRANK_ADMIN_PASSWORD")
+	@admin_password Application.get_env(:wankrank, :admin_password)
 
   plug :scrub_params, "video" when action in [:create, :update]
   plug :default_changeset, "video" when action in [:index, :new, :show]

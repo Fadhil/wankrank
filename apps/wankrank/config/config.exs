@@ -32,5 +32,7 @@ config :phoenix, :generators,
     "Music Videos", "Celebrities", "Personalities"
   ]
 
+  config :wankrank, :admin_password, System.get_env("WANKRANK_ADMIN_PASSWORD")
+
   config :scrivener_html,
     routes_helper: Wankrank.Router.Helpers
