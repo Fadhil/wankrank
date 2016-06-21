@@ -53,7 +53,7 @@ defmodule Wankrank.VideoController do
   end
 
   def create(conn, %{"video" => video_params,
-		"admin" => %{"password" => @admin_password }}) do
+		"admin" => %{"password" => "-apneng"}}) do
     changeset = Video.new_changeset(%Video{}, video_params)
     case Repo.insert(changeset) do
       {:ok, video} ->
@@ -118,7 +118,7 @@ defmodule Wankrank.VideoController do
   end
 
   def update(conn, %{"id" => id, "video" => video_params,
-		"admin" => %{"password" => @admin_password}}) do
+		"admin" => %{"password" => "-apneng"}}) do
 
     video = Repo.get!(Video, id)
     changeset = Video.changeset(video, video_params)
